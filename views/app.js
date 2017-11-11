@@ -69,7 +69,7 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 
 		for(var i=0; i<$localStorage.cityList.length; i++){
 			console.log($localStorage.cityList[i]);
-		    	if($localStorage.cityList[i] == city){
+		    	if($localStorage.cityList[i].toUpperCase() == city.toUpperCase()){
 		    		$localStorage.cityList.splice(i, 1);
 		    	}
 		    }
