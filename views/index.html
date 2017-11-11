@@ -37,7 +37,7 @@
 	    	<div class="card-deck" style= "display: inline-flex; flex-wrap: nowrap;">
 		    	<div class="card" style="width: 20rem;" ng-repeat="data in dataArray">
 				  <div class="card-body">
-				    <h4 class="card-title btn btn-warning">{{data.name}}</h4>
+				    <h4 class="card-title btn btn-warning" ng-click="removeCity(data.name)">{{data.name}}</h4>
 				    <h6 class="card-subtitle mb-2 text-muted">{{data.description}}</h6>
 				    <div class="card-text">
 				    	<div class="row">

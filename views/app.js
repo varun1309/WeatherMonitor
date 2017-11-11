@@ -10,13 +10,14 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 	//Page load actions
 	$scope.dataArray =[];
 	
-
 	if($localStorage.cityList == undefined){
 		$localStorage.cityList = [];
 	}
 	
 	$scope.add = function() {
-		$localStorage.cityList.push($scope.cityName);
+		if($localStorage.cityList.indexOf($scope.cityName) == -1){
+			$localStorage.cityList.push($scope.cityName);
+		}
 		fetchWeatherRecordsForCity($scope.cityName);
 	}
 
@@ -42,13 +43,36 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 		    	"name": name,
 		    	"description": data.weather[0].description
 		    };
+
+		    for(var i=0; i<$scope.dataArray.length; i++){
+		    	if($scope.dataArray[i].name == name){
+		    		$scope.dataArray.splice(i, 1);
+		    	}
+		    }
+
 		    $scope.dataArray.push(json);
+		    
 		  }).
 		  error(function(data, status, headers, config) {
 		    // called asynchronously if an error occurs
 		    // or server returns response with an error status.
 		    console.log('error');
 		  });
+	}
+
+	$scope.removeCity = function(city){
+		for(var i=0; i<$scope.dataArray.length; i++){
+		    	if($scope.dataArray[i].name == city){
+		    		$scope.dataArray.splice(i, 1);
+		    	}
+		    }
+
+		for(var i=0; i<$localStorage.cityList.length; i++){
+			console.log($localStorage.cityList[i]);
+		    	if($localStorage.cityList[i] == city){
+		    		$localStorage.cityList.splice(i, 1);
+		    	}
+		    }
 	}
 
 
