@@ -33,36 +33,39 @@
 		  </div>
 	    </nav>
 
-	    <div class="container-fluid pt-5">
-	    	<div class="card-deck" style= "display: inline-flex; flex-wrap: nowrap;">
-		    	<div class="card" style="width: 20rem;" ng-repeat="data in dataArray">
+	    <div class="container-fluid mt-5">
+	    	<div class="card-deck">
+		    	<div ng-repeat="data in dataArray">
+				<div class="card mt-3" style="width:95%">
 				  <div class="card-body">
 				    <h4 class="card-title btn btn-warning" data-toggle="tooltip" data-placement="top" title="Click to remove from your screen" ng-click="removeCity(data.name)">{{data.name}}</h4>
 				    <h6 class="card-subtitle mb-2 text-muted">{{data.description}}</h6>
 				    <div class="card-text">
 				    	<div class="row">
-				    		<div class="col font-weight-bold">Temperature:</div>
-				    		<div class="col">{{data.temp}}</div>
+				    		<div class="col-8 font-weight-bold">Temp:</div>
+				    		<div class="col-4 float-right">{{data.temp}}</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col font-weight-bold">Humidity:</div>
-				    		<div class="col">{{data.humidity}}</div>
+				    		<div class="col-8 font-weight-bold">Humidity:</div>
+				    		<div class="col-4 float-right">{{data.humidity}}</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col font-weight-bold">Wind Speed:</div>
-				    		<div class="col">{{data.windspeed}}</div>
+				    		<div class="col-8 font-weight-bold">Wind Speed:</div>
+				    		<div class="col-4 float-right">{{data.windspeed}}</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col font-weight-bold">Max:</div>
-				    		<div class="col">{{data.temp_min}}</div>
+				    		<div class="col-8 font-weight-bold">Max:</div>
+				    		<div class="col-4 float-right">{{data.temp_min}}</div>
 				    	</div>
 				    	<div class="row">
-				    		<div class="col font-weight-bold">Min:</div>
-				    		<div class="col">{{data.temp_max}}</div>
+				    		<div class="col-8 font-weight-bold">Min:</div>
+				    		<div class="col-4 float-right">{{data.temp_max}}</div>
 				    	</div>
 				    </div>
 				    
 				  </div>
+			
+				</div>
 				</div>
 			</div>
 	    </div>

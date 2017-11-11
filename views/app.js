@@ -15,9 +15,7 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 	}
 	
 	$scope.add = function() {
-		if($localStorage.cityList.indexOf($scope.cityName) == -1){
-			$localStorage.cityList.push($scope.cityName);
-		}
+		
 		fetchWeatherRecordsForCity($scope.cityName);
 	}
 
@@ -27,6 +25,10 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 		    // this callback will be called asynchronously
 		    // when the response is available
 
+		    if($localStorage.cityList.indexOf(data.name) == -1){
+				$localStorage.cityList.push(data.name);
+			}
+
 		    var temp = data.main.temp - 273.15;
 		    var temp_min = data.main.temp_min - 273.15;
 		    var temp_max = data.main.temp_max - 273.15;
@@ -35,9 +37,9 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 		    var name = data.name;
 
 		    var json = {
-		    	"temp": temp.toFixed(2),
-		    	"temp_min": temp_min.toFixed(2),
-		    	"temp_max": temp_max.toFixed(2),
+		    	"temp": temp.toFixed(0),
+		    	"temp_min": temp_min.toFixed(0),
+		    	"temp_max": temp_max.toFixed(0),
 		    	"humidity": humidity,
 		    	"windspeed": windspeed,
 		    	"name": name,
