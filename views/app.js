@@ -9,6 +9,9 @@ app.factory('Weather', ['$resource', function($resource){
 app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorage', '$sessionStorage', function($scope, Weather, $http, $localStorage, $sessionStorage){
 	//Page load actions
 	$scope.dataArray =[];
+
+	$scope.isError = false;
+	$scope.errorMsg = "";
 	
 	if($localStorage.cityList == undefined){
 		$localStorage.cityList = [];
@@ -19,7 +22,8 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 	$scope.add = function() {
 		
 		if($scope.cityName == undefined){
-			alert($scope.cityName);
+			$scope.isError = true;
+			$scope.errorMsg = "Invalid location name";
 
 		} else {
 			fetchWeatherRecordsForCity($scope.cityName);
@@ -32,6 +36,14 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 		  success(function(data, status, headers, config) {
 		    // this callback will be called asynchronously
 		    // when the response is available
+
+		    if(data.cod==404){
+		    	$scope.isError = true;
+				$scope.errorMsg = data.message;
+		    } else {
+		    	$scope.isError = false;
+				$scope.errorMsg = "";
+		    }
 
 		    if(data.name!=null && $localStorage.cityList.indexOf(data.name) == -1){
 				$localStorage.cityList.push(data.name);
@@ -61,6 +73,8 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 		    }
 
 		    $scope.dataArray.push(json);
+
+		    $scope.cityName = '';
 		    
 		  }).
 		  error(function(data, status, headers, config) {
