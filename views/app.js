@@ -13,10 +13,18 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 	if($localStorage.cityList == undefined){
 		$localStorage.cityList = [];
 	}
+
+	$scope.word = /^[\A-Za-z ]*$/;
 	
 	$scope.add = function() {
 		
-		fetchWeatherRecordsForCity($scope.cityName);
+		if($scope.cityName == undefined){
+			alert($scope.cityName);
+
+		} else {
+			fetchWeatherRecordsForCity($scope.cityName);
+		}
+		
 	}
 
 	fetchWeatherRecordsForCity = function(city){
