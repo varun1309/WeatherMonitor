@@ -25,7 +25,7 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 		    // this callback will be called asynchronously
 		    // when the response is available
 
-		    if($localStorage.cityList.indexOf(data.name) == -1){
+		    if(data.name!=null && $localStorage.cityList.indexOf(data.name) == -1){
 				$localStorage.cityList.push(data.name);
 			}
 
@@ -71,7 +71,7 @@ app.controller('weatherController', ['$scope', 'Weather', '$http', '$localStorag
 
 		for(var i=0; i<$localStorage.cityList.length; i++){
 			console.log($localStorage.cityList[i]);
-		    	if($localStorage.cityList[i].toUpperCase() == city.toUpperCase()){
+		    	if($localStorage.cityList[i] != null && $localStorage.cityList[i].toUpperCase() == city.toUpperCase()){
 		    		$localStorage.cityList.splice(i, 1);
 		    	}
 		    }
